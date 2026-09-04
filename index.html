@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment Portal - PT Padepokan Tujuh Sembilan</title>
+    <!-- Tailwind CSS untuk desain modern & responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Efek animasi lembut / smooth transition */
+        .fade-in { animation: fadeIn 0.4s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col justify-between text-slate-700">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white/85 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo PT Padepokan Tujuh Sembilan -->
+            <div class="flex items-center gap-3">
+                <img src="https://tujuhsembilan.com/assets/images/logo.png" alt="Logo PT Padepokan Tujuh Sembilan" class="h-8 object-contain" onerror="this.src='https://via.placeholder.com/120x30?text=Tujuh+Sembilan'">
+            </div>
+
+            <!-- Menu Navigasi Interaktif -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <button onclick="switchTab('home')" id="navHome" class="text-indigo-600 transition hover:text-indigo-700 py-2 border-b-2 border-indigo-600">Home</button>
+                <button onclick="switchTab('bgc')" id="navBgc" class="text-slate-600 transition hover:text-indigo-600 py-2 border-b-2 border-transparent">Background Checking</button>
+                <button onclick="switchTab('status')" id="navStatus" class="text-slate-600 transition hover:text-indigo-600 py-2 border-b-2 border-transparent">Check Status BGC</button>
+            </nav>
+
+            <!-- Kontak Cepat (Email) -->
+            <div class="hidden lg:flex items-center gap-4 text-xs">
+                <a href="mailto:rekrutmen79@gmail.com" class="text-slate-500 hover:text-indigo-600 transition">✉️ rekrutmen79@gmail.com</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama (Dinamis Berdasarkan Menu) -->
+    <main class="max-w-4xl w-full mx-auto px-6 py-12 my-auto">
+
+        <!-- 1. MENU HOME (Tampilan Sambutan) -->
+        <div id="sectionHome" class="fade-in text-center py-8">
+            <span class="inline-block py-1 px-3 rounded-full bg-indigo-50 text-indigo-600 text-xs font-semibold mb-4 tracking-wide uppercase">Tujuh Sembilan Recruitment</span>
+            <h1 class="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+                Tujuh Sembilan Career Portal
+            </h1>
+            <p class="text-slate-500 max-w-xl mx-auto text-sm md:text-base mb-8 leading-relaxed">
+                Selamat datang di portal rekrutmen resmi PT Padepokan Tujuh Sembilan. Silakan pilih menu di bawah untuk melengkapi verifikasi data atau melacak status lamaran Anda.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="switchTab('bgc')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition transform hover:-translate-y-0.5 text-sm">
+                    Mulai Background Checking ➔
+                </button>
+                <button onclick="switchTab('status')" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold px-6 py-3 rounded-xl shadow-sm transition transform hover:-translate-y-0.5 text-sm">
+                    Cek Status Progres BGC
+                </button>
+            </div>
+        </div>
+
+        <!-- 2. MENU BACKGROUND CHECKING (Arahkan ke Form Tally) -->
+        <div id="sectionBgc" class="fade-in hidden bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center max-w-xl mx-auto">
+            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">📋</div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-2">Formulir Background Checking</h2>
+            <p class="text-slate-500 text-sm mb-6">
+                Silakan isi formulir referensi kerja dan media sosial Anda melalui tautan resmi Tally di bawah ini. Pastikan data atasan dan link sosial media diisi dengan benar.
+            </p>
+            <a href="LINK_FORM_TALLY_ANDA_DISINI" target="_blank" class="inline-block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl shadow-md transition text-sm">
+                Buka Formulir BGC (Tally) ↗
+            </a>
+            <button onclick="switchTab('home')" class="mt-4 text-xs text-slate-400 hover:text-slate-600 block mx-auto">← Kembali ke Beranda</button>
+        </div>
+
+        <!-- 3. MENU CEK STATUS BGC (Fitur Tracking Email) -->
+        <div id="sectionStatus" class="fade-in hidden bg-white p-8 rounded-2xl shadow-sm border border-slate-100 max-w-xl mx-auto">
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">🔍</div>
+                <h2 class="text-2xl font-bold text-slate-900">Cek Status Progres BGC</h2>
+                <p class="text-slate-500 text-sm mt-1">Masukkan email yang Anda daftarkan untuk melihat status verifikasi terkini.</p>
+            </div>
+
+            <!-- Form Input -->
+            <form id="trackingForm" onsubmit="checkStatus(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Email Kandidat</label>
+                    <input type="email" id="emailInput" required placeholder="namaanda@email.com" 
+                        class="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition">
+                </div>
+                <button type="submit" id="submitBtn"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold py-3 rounded-xl transition shadow-sm">
+                    Cek Status Sekarang
+                </button>
+            </form>
+
+            <!-- Hasil Pencarian Status -->
+            <div id="resultContainer" class="mt-6 hidden border-t border-slate-100 pt-6">
+                <div id="statusCard" class="p-4 rounded-xl"></div>
+            </div>
+
+            <button onclick="switchTab('home')" class="mt-6 text-xs text-slate-400 hover:text-slate-600 block mx-auto">← Kembali ke Beranda</button>
+        </div>
+
+    </main>
+
+    <!-- Footer & Kontak Resmi -->
+    <footer class="bg-white border-t border-slate-100 py-8 px-6 mt-12">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <div>
+                <p class="font-bold text-slate-800 mb-1">PT Padepokan Tujuh Sembilan</p>
+                <p>&copy; 2026 All rights reserved.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <span>✉️ Email: <strong>rekrutmen79@gmail.com</strong></span>
+                <span>📱 WhatsApp Rec: <a href="https://wa.me/6282123758753" target="_blank" class="text-emerald-600 font-semibold hover:underline">0821-2375-8753</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tombol WhatsApp Mengambang (Floating Button di pojok kanan bawah) -->
+    <a href="https://wa.me/6282123758753" target="_blank" 
+       class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-lg transition transform hover:scale-105 z-50 flex items-center justify-center"
+       title="Hubungi Rekrutmen via WhatsApp">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+
+    <!-- JavaScript untuk Sistem Animasi Menu & Tracking Google Sheets -->
+    <script>
+        function switchTab(tabId) {
+            const homeSec = document.getElementById('sectionHome');
+            const bgcSec = document.getElementById('sectionBgc');
+            const statusSec = document.getElementById('sectionStatus');
+            
+            const navHome = document.getElementById('navHome');
+            const navBgc = document.getElementById('navBgc');
+            const navStatus = document.getElementById('navStatus');
+
+            homeSec.classList.add('hidden');
+            bgcSec.classList.add('hidden');
+            statusSec.classList.add('hidden');
+
+            navHome.className = "text-slate-600 transition hover:text-indigo-600 py-2 border-b-2 border-transparent";
+            navBgc.className = "text-slate-600 transition hover:text-indigo-600 py-2 border-b-2 border-transparent";
+            navStatus.className = "text-slate-600 transition hover:text-indigo-600 py-2 border-b-2 border-transparent";
+
+            if (tabId === 'home') {
+                homeSec.classList.remove('hidden');
+                navHome.className = "text-indigo-600 transition hover:text-indigo-700 py-2 border-b-2 border-indigo-600";
+            } else if (tabId === 'bgc') {
+                bgcSec.classList.remove('hidden');
+                navBgc.className = "text-indigo-600 transition hover:text-indigo-700 py-2 border-b-2 border-indigo-600";
+            } else if (tabId === 'status') {
+                statusSec.classList.remove('hidden');
+                navStatus.className = "text-indigo-600 transition hover:text-indigo-700 py-2 border-b-2 border-indigo-600";
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Ganti URL di bawah ini dengan URL Web App dari Google Apps Script Anda
+        const SCRIPT_URL = "URL_WEB_APP_GOOGLE_SHEETS_ANDA";
+
+        async function checkStatus(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailInput').value.trim().toLowerCase();
+            const btn = document.getElementById('submitBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const statusCard = document.getElementById('statusCard');
+
+            btn.innerText = "Mencari data...";
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+
+                const candidate = data.find(item => item.email && item.email.toLowerCase() === email);
+
+                resultContainer.classList.remove('hidden');
+
+                if (candidate) {
+                    let status = candidate.status ? candidate.status.trim() : "Under Review";
+                    let statusBadge = "";
+                    let message = "";
+                    let cardStyle = "";
+
+                    if (status.toLowerCase() === "under review") {
+                        cardStyle = "bg-amber-50 border border-amber-200 text-amber-900";
+                        statusBadge = `<span class="inline-block bg-amber-200 text-amber-800 text-xs px-2.5 py-1 rounded-md font-bold uppercase mb-2">⏳ Under Review</span>`;
+                        message = `Halo <b>${candidate.nama || 'Kandidat'}</b>, data background checking Anda saat ini sedang dalam tahap verifikasi oleh tim HR PT Padepokan Tujuh Sembilan. Mohon menunggu informasi selanjutnya ya!`;
+                    } else if (status.toLowerCase() === "completed") {
+                        cardStyle = "bg-emerald-50 border border-emerald-200 text-emerald-900";
+                        statusBadge = `<span class="inline-block bg-emerald-200 text-emerald-800 text-xs px-2.5 py-1 rounded-md font-bold uppercase mb-2">✅ Completed</span>`;
+                        message = `Halo <b>${candidate.nama || 'Kandidat'}</b>, proses verifikasi background checking Anda telah selesai. Tim rekrutmen kami akan segera menghubungi Anda melalui WhatsApp resmi untuk tahapan selanjutnya.`;
+                    } else {
+                        cardStyle = "bg-slate-100 border border-slate-200 text-slate-800";
+                        statusBadge = `<span class="inline-block bg-slate-200 text-slate-700 text-xs px-2.5 py-1 rounded-md font-bold uppercase mb-2">ℹ️ ${status}</span>`;
+                        message = `Halo <b>${candidate.nama || 'Kandidat'}</b>, status Anda saat ini: <b>${status}</b>.`;
+                    }
+
+                    statusCard.className = `p-4 rounded-xl ${cardStyle}`;
+                    statusCard.innerHTML = `
+                        ${statusBadge}
+                        <p class="text-sm leading-relaxed">${message}</p>
+                    `;
+                } else {
+                    statusCard.className = "p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900";
+                    statusCard.innerHTML = `
+                        <span class="inline-block bg-rose-200 text-rose-800 text-xs px-2.5 py-1 rounded-md font-bold uppercase mb-2">❌ Tidak Ditemukan</span>
+                        <p class="text-sm">Email <b>${email}</b> tidak ditemukan dalam database BGC aktif. Pastikan Anda menuliskan email yang sama persis seperti saat mengisi form Tally.</p>
+                    `;
+                }
+            } catch (error) {
+                console.error(error);
+                resultContainer.classList.remove('hidden');
+                statusCard.className = "p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900";
+                statusCard.innerHTML = `<p class="text-sm">Terjadi kendala koneksi ke server. Silakan coba beberapa saat lagi.</p>`;
+            } finally {
+                btn.innerText = "Cek Status Sekarang";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
